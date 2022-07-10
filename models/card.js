@@ -12,20 +12,20 @@ const cardSchema = new mongoose.Schema({
     required: true,
     default: 'https://pictures.s3.yandex.net/resources/jacques-cousteau_1604399756.png',
   },
-  // owner: {
-  //   type: mongoose.Schema.Types.ObjectId,
-  //   ref: 'user',
-  //   required: true,
-  //   default: [],
-  // },
-  // likes: [{
-  //   type: mongoose.Schema.Types.ObjectId,
-  //   ref: 'user',
-  // }],
-  // createdAt: {
-  //   type: Date,
-  //   default: Date.now(),
-  // },
+  owner: {
+    type: mongoose.Schema.Types.ObjectId,
+    ref: 'user',
+    required: true,
+    default: [],
+  },
+  likes: [{
+    type: mongoose.Schema.Types.ObjectId,
+    ref: 'user',
+  }],
+  createdAt: {
+    type: Date,
+    default: Date.now(),
+  },
 });
 
 module.exports = mongoose.model('card', cardSchema);
