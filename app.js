@@ -7,7 +7,7 @@ const { PORT = 3000 } = process.env;
 
 const app = express();
 
-mongoose.connect('mongodb://localhost:27017/mestodb', {useNewUrlParser: true});
+mongoose.connect('mongodb://localhost:27017/mestodb', { useNewUrlParser: true });
 app.use(express.json());
 
 app.use((req, res, next) => {
@@ -21,7 +21,7 @@ app.use((req, res, next) => {
 app.use('/', users);
 app.use('/', cards);
 
-module.exports.createCard = (req, res) => {
+module.exports.createCard = (req) => {
   console.log(req.user._id); // _id станет доступен
 };
 

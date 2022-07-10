@@ -15,9 +15,9 @@ module.exports.createCard = (req, res) => {
     }))
     .catch((err) => {
       if (err.name === 'ValidationError') {
-        return res.status(400).send({ message: 'Переданы некорректные данные карточки'});
+        return res.status(400).send({ message: 'Переданы некорректные данные карточки' });
       }
-      res.status(500).send({ message: 'Произошла ошибка' })
+      return res.status(500).send({ message: 'Произошла ошибка' });
     });
 };
 module.exports.deleteCard = (req, res) => {
