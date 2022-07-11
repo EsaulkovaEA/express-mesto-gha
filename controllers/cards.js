@@ -8,7 +8,7 @@ const {
 module.exports.getCards = (req, res) => {
   Card.find({})
     .then((cards) => res.status(200).send({ cards }))
-    .catch(() => res.status(ERROR_CODE_500).send({ message: 'Произошла ошибка' }));
+    .catch(() => res.status(ERROR_CODE_500).send({ message: 'Произошла ошибка на сервере' }));
 };
 module.exports.createCard = (req, res) => {
   const owner = req.user._id;
@@ -19,7 +19,7 @@ module.exports.createCard = (req, res) => {
       if (err.name === 'ValidationError') {
         return res.status(ERROR_CODE_400).send({ message: 'Переданы некорректные данные карточки' });
       }
-      return res.status(ERROR_CODE_500).send({ message: 'Произошла ошибка' });
+      return res.status(ERROR_CODE_500).send({ message: 'Произошла ошибка на сервере' });
     });
 };
 module.exports.deleteCard = (req, res) => {
