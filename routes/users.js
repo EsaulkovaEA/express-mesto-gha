@@ -13,13 +13,13 @@ router.get('/users/:userId', celebrate({
 }), returnUserId);
 router.patch('/users/me', celebrate({
   body: {
-    name: Joi.string().min(2).max(30).required(),
-    about: Joi.string().min(2).max(30).required(),
+    name: Joi.string().min(2).max(30),
+    about: Joi.string().min(2).max(30),
   },
 }), updateProfile);
 router.patch('/users/me/avatar', celebrate({
   body: {
-    avatar: Joi.string().required().regex(/https?:\/\/\S+/),
+    avatar: Joi.string().regex(/https?:\/\/\S+/),
   },
 }), updateAvatar);
 
