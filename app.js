@@ -1,5 +1,6 @@
 const express = require('express');
 const mongoose = require('mongoose');
+const { errors } = require('celebrate');
 const users = require('./routes/users');
 const cards = require('./routes/cards');
 
@@ -25,6 +26,8 @@ app.post('/signup', createUser);
 app.use('*', (req, res, next) => {
   next(new NotFoundError('Данной страницы не существует'));
 });
+
+app.use(errors());
 
 app.listen(PORT, () => {
   console.log(`App listening on port ${PORT}`);
