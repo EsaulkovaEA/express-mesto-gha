@@ -16,7 +16,13 @@ module.exports.createUser = (req, res, next) => {
   const {
     name, about, avatar, email, password,
   } = req.body;
-  bcrypt.hash(password, 10)
+  User.findOne({ email })
+    .then((user) => {
+      if (user) {
+        throw new ConflictError('Такой пользователь уже есть в базе данных');
+      }
+      return bcrypt.hash(password, 10);
+    })
     .then((hash) => User.create({
       name,
       about,
@@ -28,6 +34,7 @@ module.exports.createUser = (req, res, next) => {
       name: user.name,
       about: user.about,
       avatar: user.avatar,
+      email: user.email,
     }))
     .catch((err) => {
       if (err.name === 'ValidationError') {
