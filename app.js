@@ -42,17 +42,6 @@ app.use('*', (req, res, next) => {
 
 app.use(errors());
 
-app.use('*', (err, req, res, next) => {
-  const status = err.statusCode || 500;
-  const message = err.message || 'На сервере произошла ошибка.';
-
-  res.status(status).send({
-    err,
-    message,
-  });
-  next();
-});
 app.listen(PORT, () => {
-  // eslint-disable-next-line no-console
   console.log(`App listening on port ${PORT}`);
 });
