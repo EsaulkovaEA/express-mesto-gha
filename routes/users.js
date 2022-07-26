@@ -5,19 +5,19 @@ const {
   getUsers, returnUserId, updateProfile, updateAvatar,
 } = require('../controllers/users');
 
-router.get('/users', getUsers);
-router.get('/users/:userId', celebrate({
+router.get('/', getUsers);
+router.get('/:userId', celebrate({
   params: Joi.object().keys({
     userId: Joi.string().length(24).hex().required(),
   }),
 }), returnUserId);
-router.patch('/users/me', celebrate({
+router.patch('/me', celebrate({
   body: {
     name: Joi.string().min(2).max(30),
     about: Joi.string().min(2).max(30),
   },
 }), updateProfile);
-router.patch('/users/me/avatar', celebrate({
+router.patch('/me/avatar', celebrate({
   body: {
     avatar: Joi.string().regex(/https?:\/\/\S+/),
   },

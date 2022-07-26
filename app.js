@@ -17,8 +17,8 @@ const app = express();
 mongoose.connect('mongodb://localhost:27017/mestodb', { useNewUrlParser: true });
 app.use(express.json());
 
-app.use('/', auth, users);
-app.use('/', auth, cards);
+app.use('/users', auth, users);
+app.use('/cards', auth, cards);
 
 app.post('/signin', celebrate({
   body: Joi.object().keys({
